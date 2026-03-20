@@ -97,10 +97,10 @@ Page({
     // fromAmount * fromRate = 人民币金额
     // 人民币金额 / toRate = 目标货币金额
     const cnyAmount = parseFloat(fromAmount) * fromRate
-    const toAmount = cnyAmount / toRate
+    const toAmount = cnyAmount * toRate
     
     // 计算汇率信息
-    const exchangeRate = fromRate / toRate
+    const exchangeRate = toRate / fromRate
     const rateInfo = `1 ${fromCurrency.code} = ${exchangeRate.toFixed(6)} ${toCurrency.code}`
     
     this.setData({ 
