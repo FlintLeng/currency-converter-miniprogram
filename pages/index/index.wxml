@@ -1,0 +1,113 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 源货币卡片 -->
+  <view class="card">
+    <view class="currency-row" bindtap="showFromCurrencyPicker">
+      <view class="currency-info">
+        <view class="currency-icon {{fromCurrency.iconClass}}">{{fromCurrency.icon}}</view>
+        <view>
+          <view class="currency-name">{{fromCurrency.name}}</view>
+          <view class="currency-code">{{fromCurrency.code}}</view>
+        </view>
+      </view>
+      <view class="arrow-icon">▼</view>
+    </view>
+    
+    <view class="currency-row">
+      <view class="input-label">金额</view>
+      <input 
+        class="amount-input" 
+        type="digit" 
+        placeholder="请输入金额"
+        value="{{fromAmount}}"
+        bindinput="onAmountInput"
+      />
+    </view>
+  </view>
+
+  <!-- 交换按钮 -->
+  <view class="swap-btn" bindtap="swapCurrency">
+    <view class="swap-icon">
+      <text style="font-size: 32rpx; color: #1E88E5;">⇅</text>
+    </view>
+  </view>
+
+  <!-- 目标货币卡片 -->
+  <view class="card">
+    <view class="currency-row" bindtap="showToCurrencyPicker">
+      <view class="currency-info">
+        <view class="currency-icon {{toCurrency.iconClass}}">{{toCurrency.icon}}</view>
+        <view>
+          <view class="currency-name">{{toCurrency.name}}</view>
+          <view class="currency-code">{{toCurrency.code}}</view>
+        </view>
+      </view>
+      <view class="arrow-icon">▼</view>
+    </view>
+    
+    <view class="currency-row">
+      <view class="input-label">转换结果</view>
+      <view class="amount-input result-text">{{toAmount || '—'}}</view>
+    </view>
+  </view>
+
+  <!-- 汇率信息 -->
+  <view class="rate-info" wx:if="{{rateInfo}}">
+    {{rateInfo}}
+  </view>
+
+  <!-- 转换按钮 -->
+  <button class="convert-btn" bindtap="refreshRates" loading="{{loading}}">
+    {{loading ? '获取汇率中...' : '刷新实时汇率'}}
+  </button>
+
+  <!-- 结果展示区 -->
+  <view class="result-section" wx:if="{{toAmount}}" bindtap="copyResult">
+    <view class="result-label">点击复制结果</view>
+    <view class="result-amount">{{toAmount}}</view>
+    <view class="result-currency">{{toCurrency.name}} ({{toCurrency.code}})</view>
+  </view>
+
+  <!-- 其他货币汇率列表 -->
+  <view class="currency-list" wx:if="{{fromAmount && rates.CNY}}">
+    <view class="currency-list-title">其他货币兑换结果</view>
+    <view class="currency-item" wx:for="{{currencies}}" wx:key="code" wx:if="{{item.code !== fromCurrency.code && item.code !== toCurrency.code}}">
+      <view class="currency-item-left">
+        <view class="currency-icon {{item.iconClass}}" style="width: 48rpx; height: 48rpx; font-size: 22rpx;">{{item.icon}}</view>
+        <view>
+          <view class="currency-name" style="font-size: 26rpx;">{{item.name}}</view>
+          <view class="currency-code" style="font-size: 22rpx;">{{item.code}}</view>
+        </view>
+      </view>
+      <view class="currency-item-rate">{{item.rateValue || '—'}}</view>
+    </view>
+  </view>
+
+  <!-- 更新时间 -->
+  <view class="update-time" wx:if="{{updateTime}}">
+    汇率更新时间: {{updateTime}}
+  </view>
+</view>
+
+<!-- 货币选择弹窗 -->
+<view class="picker-mask" wx:if="{{showFromPicker || showToPicker}}" bindtap="closePicker">
+  <view class="picker-content" catchtap="">
+    <view class="picker-title">选择货币</view>
+    <view class="picker-list">
+      <view 
+        class="picker-item {{item.code === fromCurrency.code || item.code === toCurrency.code ? 'disabled' : ''}}" 
+        wx:for="{{currencies}}" 
+        wx:key="code"
+        data-code="{{item.code}}"
+        bindtap="{{showFromPicker ? 'selectFromCurrency' : 'selectToCurrency'}}"
+      >
+        <view class="currency-icon {{item.iconClass}}" style="width: 48rpx; height: 48rpx; font-size: 22rpx;">{{item.icon}}</view>
+        <view class="picker-item-text">
+          <view>{{item.name}}</view>
+          <view style="font-size: 22rpx; color: #999;">{{item.code}}</view>
+        </view>
+        <view wx:if="{{item.code === fromCurrency.code || item.code === toCurrency.code}}" class="picker-item-check">✓</view>
+      </view>
+    </view>
+  </view>
+</view>

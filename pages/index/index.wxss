@@ -1,0 +1,272 @@
+/* pages/index/index.wxss */
+
+.container {
+  padding: 20rpx;
+  padding-bottom: 100rpx;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 20rpx 30rpx;
+  margin-bottom: 10rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 货币行 */
+.currency-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+}
+
+.currency-row:not(:last-child) {
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.currency-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.currency-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.currency-name {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+.currency-code {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}
+
+.arrow-icon {
+  font-size: 24rpx;
+  color: #cccccc;
+  padding: 10rpx;
+}
+
+/* 输入框 */
+.input-label {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.amount-input {
+  flex: 1;
+  text-align: right;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.result-text {
+  color: #1E88E5;
+}
+
+/* 交换按钮 */
+.swap-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.swap-icon {
+  width: 64rpx;
+  height: 64rpx;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(30, 136, 229, 0.2);
+}
+
+/* 汇率信息 */
+.rate-info {
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  color: #888888;
+}
+
+/* 转换按钮 */
+.convert-btn {
+  background: linear-gradient(135deg, #1E88E5, #1565C0);
+  color: #ffffff;
+  border-radius: 50rpx;
+  padding: 28rpx 0;
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-top: 20rpx;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(30, 136, 229, 0.3);
+}
+
+.convert-btn::after {
+  border: none;
+}
+
+/* 结果区域 */
+.result-section {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  margin-top: 30rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.result-label {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 16rpx;
+}
+
+.result-amount {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #1E88E5;
+  letter-spacing: 2rpx;
+}
+
+.result-currency {
+  font-size: 28rpx;
+  color: #666666;
+  margin-top: 12rpx;
+}
+
+/* 货币列表 */
+.currency-list {
+  margin-top: 40rpx;
+}
+
+.currency-list-title {
+  font-size: 28rpx;
+  color: #666666;
+  margin-bottom: 20rpx;
+  padding-left: 10rpx;
+  font-weight: 500;
+}
+
+.currency-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 24rpx 30rpx;
+  border-radius: 12rpx;
+  margin-bottom: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.currency-item-left {
+  display: flex;
+  align-items: center;
+}
+
+.currency-item-rate {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 600;
+}
+
+/* 更新时间 */
+.update-time {
+  text-align: center;
+  font-size: 24rpx;
+  color: #cccccc;
+  margin-top: 40rpx;
+  padding-bottom: 20rpx;
+}
+
+/* 货币选择弹窗 */
+.picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.picker-content {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 24rpx 24rpx 0 0;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.picker-title {
+  text-align: center;
+  padding: 30rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.picker-list {
+  padding: 20rpx;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.picker-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 20rpx;
+  border-radius: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.picker-item:active {
+  background-color: #f5f5f5;
+}
+
+.picker-item.disabled {
+  opacity: 0.5;
+}
+
+.picker-item-text {
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.picker-item-check {
+  color: #1E88E5;
+  font-size: 32rpx;
+}
+
+/* 货币图标颜色 */
+.icon-cny { background: linear-gradient(135deg, #E53935, #C62828); }
+.icon-usd { background: linear-gradient(135deg, #1E88E5, #1565C0); }
+.icon-hkd { background: linear-gradient(135deg, #43A047, #2E7D32); }
+.icon-eur { background: linear-gradient(135deg, #5E35B1, #4527A0); }
+.icon-jpy { background: linear-gradient(135deg, #F4511E, #D84315); }
+.icon-sgd { background: linear-gradient(135deg, #00ACC1, #00838F); }
+.icon-krw { background: linear-gradient(135deg, #FFA726, #FB8C00); }
